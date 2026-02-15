@@ -1,65 +1,97 @@
+'use client';
+
+import ClaudeBuilderClubLogo from './ClaudeBuilderClubLogo';
+
 export default function Footer() {
   return (
-    <footer className="bg-[#191919] border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
-          {/* Brand */}
-          <div className="col-span-2 md:col-span-1">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#D4A574] to-[#C4956A] flex items-center justify-center">
-                <span className="text-white font-bold text-sm">CB</span>
-              </div>
-              <span className="font-semibold text-white text-lg tracking-tight">
-                Builder Club
-              </span>
+    <footer className="footer w-full" style={{ paddingBlockStart: '56px' }}>
+      <div className="grid-container">
+        {/* Main Content */}
+        <div className="footer-main-content w-full mb-5">
+          {/* Experience Liftoff Section */}
+          <h2
+            className="heading-2 mb-12"
+            style={{
+              fontWeight: 450,
+              maxWidth: '600px'
+            }}
+          >
+            Experience liftoff
+          </h2>
+
+          {/* Navigation Sections */}
+          <div className="footer-nav-section-container flex justify-between gap-6 flex-wrap">
+            {/* Column 1 */}
+            <div className="footer-nav-section flex flex-col items-start max-w-[288px]">
+              <p className="caption mb-3 text-[#45474d]">Download</p>
+              <a href="/download" className="body block py-1 text-[#121317] font-medium hover:underline">
+                Download for MacOS
+              </a>
+              <a href="/download" className="body block py-1 text-[#121317] font-medium hover:underline">
+                Download for Windows
+              </a>
+              <a href="/download" className="body block py-1 text-[#121317] font-medium hover:underline">
+                Download for Linux
+              </a>
             </div>
-            <p className="text-gray-500 text-sm leading-relaxed">
-              Claude Builder Club Northumbria. Building the future of AI, responsibly.
-            </p>
-          </div>
 
-          {/* Club */}
-          <div>
-            <h4 className="font-semibold text-white text-sm mb-4">Club</h4>
-            <ul className="space-y-3">
-              <li><a href="#about" className="text-gray-500 text-sm hover:text-gray-300 transition-colors">About</a></li>
-              <li><a href="#capabilities" className="text-gray-500 text-sm hover:text-gray-300 transition-colors">What We Build</a></li>
-              <li><a href="#events" className="text-gray-500 text-sm hover:text-gray-300 transition-colors">Events</a></li>
-              <li><a href="#community" className="text-gray-500 text-sm hover:text-gray-300 transition-colors">Community</a></li>
-            </ul>
-          </div>
+            {/* Column 2 */}
+            <div className="footer-nav-section flex flex-col items-start max-w-[288px]">
+              <p className="caption mb-3 text-[#45474d]">Product</p>
+              <a href="/product" className="body block py-1 text-[#121317] font-medium hover:underline">
+                Features
+              </a>
+              <a href="/pricing" className="body block py-1 text-[#121317] font-medium hover:underline">
+                Pricing
+              </a>
+              <a href="/changelog" className="body block py-1 text-[#121317] font-medium hover:underline">
+                Changelog
+              </a>
+            </div>
 
-          {/* Resources */}
-          <div>
-            <h4 className="font-semibold text-white text-sm mb-4">Resources</h4>
-            <ul className="space-y-3">
-              <li><span className="text-gray-500 text-sm">Anthropic API Docs</span></li>
-              <li><span className="text-gray-500 text-sm">Claude Documentation</span></li>
-              <li><span className="text-gray-500 text-sm">AI Safety Research</span></li>
-              <li><span className="text-gray-500 text-sm">Prompt Library</span></li>
-            </ul>
-          </div>
+            {/* Column 3 */}
+            <div className="footer-nav-section flex flex-col items-start max-w-[288px]">
+              <p className="caption mb-3 text-[#45474d]">Resources</p>
+              <a href="/docs" className="body block py-1 text-[#121317] font-medium hover:underline">
+                Documentation
+              </a>
+              <a href="/use-cases" className="body block py-1 text-[#121317] font-medium hover:underline">
+                Use cases
+              </a>
+              <a href="/blog" className="body block py-1 text-[#121317] font-medium hover:underline">
+                Blog
+              </a>
+            </div>
 
-          {/* Connect */}
-          <div>
-            <h4 className="font-semibold text-white text-sm mb-4">Connect</h4>
-            <ul className="space-y-3">
-              <li><span className="text-gray-500 text-sm">Discord</span></li>
-              <li><span className="text-gray-500 text-sm">GitHub</span></li>
-              <li><span className="text-gray-500 text-sm">Twitter / X</span></li>
-              <li><span className="text-gray-500 text-sm">LinkedIn</span></li>
-            </ul>
+            {/* Column 4 */}
+            <div className="footer-nav-section flex flex-col items-start max-w-[288px]">
+              <p className="caption mb-3 text-[#45474d]">Support</p>
+              <a href="/support" className="body block py-1 text-[#121317] font-medium hover:underline">
+                Help Center
+              </a>
+              <a href="/press" className="body block py-1 text-[#121317] font-medium hover:underline">
+                Press
+              </a>
+              <a href="/releases" className="body block py-1 text-[#121317] font-medium hover:underline">
+                Releases
+              </a>
+            </div>
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="mt-16 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-gray-600 text-sm">
-            &copy; 2026 Claude Builder Club Northumbria. All rights reserved.
-          </p>
-          <p className="text-gray-600 text-sm">
-            Built with Claude &middot; Powered by Anthropic
-          </p>
+        {/* Large Claude Builder Club Northumbria Logo */}
+        <div className="footer-img-container w-full py-16">
+          <div className="claude-builder-club-logo block px-6">
+            <ClaudeBuilderClubLogo height={100} className="max-w-full" />
+          </div>
+        </div>
+
+        {/* Copyright */}
+        <div
+          className="footer-copyright w-full flex items-center justify-start border-t border-[rgba(33,34,38,0.06)]"
+          style={{ paddingBlock: '42px 32px' }}
+        >
+          <p className="body text-[#121317] font-medium">© 2026 Claude Builder Club Northumbria. All rights reserved.</p>
         </div>
       </div>
     </footer>

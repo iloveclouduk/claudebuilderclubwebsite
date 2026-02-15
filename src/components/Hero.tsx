@@ -1,77 +1,137 @@
+'use client';
+
+import dynamic from 'next/dynamic';
+import ClaudeBuilderClubLogo from './ClaudeBuilderClubLogo';
+import ScrollTriggeredTypedText from './ScrollTriggeredTypedText';
+import { LogoCloud } from "@/components/ui/logo-cloud-3";
+
+
+
+
+
+// Logo configuration for Experience liftoff with next-generation IDE slider
+// NOTE: This slider should show Anthropic logo + Northumbria logo
+const logos = [
+  {
+    src: "/logos/anthropic-seeklogo.svg",
+    alt: "Anthropic Logo",
+    width: 220,
+    height: 110,
+  },
+  {
+    src: "/logos/northumbria-logo.png",
+    alt: "Northumbria University Logo",
+    width: 160,
+    height: 80,
+  },
+];
+
+
 export default function Hero() {
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#FDFAF6] via-[#FBF5ED] to-white">
-      {/* Subtle grid pattern */}
-      <div className="absolute inset-0 opacity-[0.03]" style={{
-        backgroundImage: `radial-gradient(circle at 1px 1px, #191919 1px, transparent 0)`,
-        backgroundSize: '40px 40px'
-      }} />
-
-      {/* Floating gradient orbs */}
-      <div className="absolute top-20 left-10 w-96 h-96 bg-[#D4A574]/10 rounded-full blur-3xl animate-float" />
-      <div className="absolute bottom-20 right-10 w-80 h-80 bg-[#C4956A]/10 rounded-full blur-3xl animate-float-delayed" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#E8D5C0]/10 rounded-full blur-3xl" />
-
-      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center pt-24">
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 rounded-full bg-[#D4A574]/10 border border-[#D4A574]/20 px-4 py-1.5 mb-8">
-          <div className="w-2 h-2 rounded-full bg-[#D4A574] animate-pulse" />
-          <span className="text-sm font-medium text-[#8B6914]">Northumbria University</span>
-        </div>
-
-        {/* Main heading */}
-        <h1 className="text-5xl sm:text-6xl lg:text-8xl font-bold tracking-tight text-[#191919] leading-[1.05]">
-          Claude Builder
-          <br />
-          <span className="bg-gradient-to-r from-[#D4A574] via-[#C4956A] to-[#B8845A] bg-clip-text text-transparent">
-            Club Northumbria
-          </span>
-        </h1>
-
-        {/* Subtitle */}
-        <p className="mt-8 text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-          We are a community of builders, researchers, and creators exploring the frontier of
-          AI safety and capability. Building with Claude to shape the future of human-AI collaboration.
-        </p>
-
-        {/* CTA Buttons */}
-        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a
-            href="#join"
-            className="group inline-flex items-center justify-center rounded-full bg-[#191919] px-8 py-3.5 text-base font-medium text-white hover:bg-[#333] transition-all hover:shadow-lg hover:shadow-black/10"
-          >
-            Join the Club
-            <svg className="ml-2 w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-            </svg>
-          </a>
-          <a
-            href="#about"
-            className="inline-flex items-center justify-center rounded-full border border-gray-200 bg-white px-8 py-3.5 text-base font-medium text-[#191919] hover:bg-gray-50 transition-all"
-          >
-            Learn More
-          </a>
-        </div>
-
-        {/* Stats bar */}
-        <div className="mt-20 grid grid-cols-3 gap-8 max-w-lg mx-auto">
-          <div className="text-center">
-            <div className="text-3xl sm:text-4xl font-bold text-[#191919]">50+</div>
-            <div className="text-sm text-gray-500 mt-1">Active Members</div>
-          </div>
-          <div className="text-center border-x border-gray-200">
-            <div className="text-3xl sm:text-4xl font-bold text-[#191919]">20+</div>
-            <div className="text-sm text-gray-500 mt-1">Projects Built</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl sm:text-4xl font-bold text-[#191919]">10+</div>
-            <div className="text-sm text-gray-500 mt-1">Events Hosted</div>
-          </div>
-        </div>
+    <section className="welcome-wrapper relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Background */}
+      <div
+        className="hero-video-wrapper absolute inset-0 z-0"
+      >
       </div>
 
-      {/* Bottom fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent" />
-    </section>
+      {/* Content */}
+      <div className="welcome-section relative z-10 flex flex-col items-center justify-center text-center px-6 py-12">
+
+        {/* Logo - fades in after typing */}
+        {/* Claude Builder Club Northumbria Logo */}
+        <div className="logo-container flex items-center mb-10">
+          <ClaudeBuilderClubLogo height={48} />
+        </div>
+
+
+
+        {/* Main Heading with Typed Effect */}
+        <div className="header-container mx-auto mb-12 relative max-w-[1100px]">
+
+
+
+
+          <h1 className="landing-main-header heading-1 m-0 relative z-10">
+            <ScrollTriggeredTypedText
+              text="Experience liftoff with the next-generation IDE"
+              speed={35}
+              showCursor={true}
+            />
+          </h1>
+        </div>
+
+        {/* Video Section - placed after heading */}
+        <div className="video-container mx-auto mb-16 px-6" style={{ maxWidth: '42rem', width: '100%', marginLeft: 'auto', marginRight: 'auto' }}>
+          <div
+            className="relative rounded-[24px] overflow-hidden"
+            style={{
+              width: '100%',
+              position: 'relative',
+              border: 'none',
+              outline: 'none',
+              boxShadow: 'none',
+            }}
+          >
+            <video
+              src="/videos/vid3.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              style={{
+                width: '100%',
+                height: 'auto',
+                display: 'block',
+                border: 'none',
+                outline: 'none',
+                boxShadow: 'none',
+                userSelect: 'none',
+                background: 'transparent'
+              }}
+            />
+          </div>
+        </div>
+
+        {/* CTA Buttons - fade in after logo */}
+        <div className="welcome-cta flex gap-3 items-center justify-center mt-4">
+          <a
+            href="/download"
+            className="button button-primary button-compact flex items-center gap-2"
+            style={{
+              padding: '12px 24px',
+              fontSize: '16px',
+              fontWeight: 450
+            }}
+          >
+            <svg width="16" height="20" viewBox="0 0 16 20" fill="currentColor">
+              <path d="M12.6 10.6c0-2.1 1.7-3.1 1.8-3.2-1-1.4-2.5-1.6-3-1.7-1.3-.1-2.5.8-3.1.8-.6 0-1.6-.7-2.7-.7-1.4 0-2.6.8-3.3 2-.7 1.2-.6 3.4.5 5.4.8 1.3 1.6 2.7 2.8 2.7 1.1 0 1.5-.7 2.8-.7 1.3 0 1.6.7 2.8.7 1.2 0 2-1.3 2.8-2.6.5-.8.9-1.5 1.1-2-.1-.1-2.2-.9-2.5-3.3v-.4zm-2.3-6c.6-.8 1-1.8.9-2.8-.9 0-1.9.6-2.6 1.4-.6.7-1 1.7-.9 2.7.9.1 1.9-.5 2.6-1.3z" />
+            </svg>
+            Download for MacOS
+          </a>
+
+          <a
+            href="/use-cases"
+            className="button button-secondary button-compact"
+            style={{
+              padding: '12px 24px',
+              fontSize: '16px',
+              fontWeight: 450
+            }}
+          >
+            Explore use cases
+          </a>
+        </div>
+
+        {/* Logo Cloud Section */}
+        <div className="mt-20 mb-16 w-full max-w-3xl">
+          <LogoCloud logos={logos} className="" />
+        </div>
+
+
+      </div>
+    </section >
   );
 }

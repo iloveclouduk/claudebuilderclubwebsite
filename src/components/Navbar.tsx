@@ -1,96 +1,153 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import Link from "next/link";
+import { useState, useEffect } from 'react';
+import ClaudeBuilderClubLogo from './ClaudeBuilderClubLogo';
+import NavDropdown from './NavDropdown';
 
 export default function Navbar() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navItems = [
+    {
+      label: 'Home',
+      href: '/',
+      hasDropdown: false
+    },
+    {
+      label: 'Build',
+      href: '/build',
+      hasDropdown: true,
+      dropdownItems: [
+        {
+          label: 'Workshops',
+          href: '/workshops',
+          description: 'Hands-on learning sessions'
+        },
+        {
+          label: 'Student Projects',
+          href: '/projects',
+          description: 'AI innovations by students'
+        }
+      ]
+    },
+    {
+      label: 'Events',
+      href: '/events',
+      hasDropdown: false
+    },
+    {
+      label: 'Partnership',
+      href: '/partnership',
+      hasDropdown: true,
+      dropdownItems: [
+        {
+          label: 'Become a Partner',
+          href: '/partner',
+          description: 'Collaborate with our community'
+        },
+        {
+          label: 'Meet the Team',
+          href: '/team',
+          description: 'Our leadership board'
+        }
+      ]
+    },
+  ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+    <header
+      className={`header fixed top-0 left-0 right-0 w-full z-20 transition-all duration-300 ${scrolled ? 'bg-white shadow-sm' : 'bg-white'}`}
+      style={{ minHeight: '36px' }}
+    >
+      <div className="grid-container">
+        <div className="main-content flex items-center justify-between py-2">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#D4A574] to-[#C4956A] flex items-center justify-center">
-              <span className="text-white font-bold text-sm">CB</span>
-            </div>
-            <span className="font-semibold text-[#191919] text-lg tracking-tight">
-              Claude Builder Club
-            </span>
-          </Link>
+          <a
+            href="/"
+            aria-label="Claude Builder Club Northumbria"
+            className="logo-link flex items-center mr-6"
+          >
+            <ClaudeBuilderClubLogo height={32} />
+          </a>
 
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8">
-            <a href="#about" className="text-sm text-gray-600 hover:text-[#191919] transition-colors">
-              About
-            </a>
-            <a href="#capabilities" className="text-sm text-gray-600 hover:text-[#191919] transition-colors">
-              What We Build
-            </a>
-            <a href="#events" className="text-sm text-gray-600 hover:text-[#191919] transition-colors">
-              Events
-            </a>
-            <a href="#community" className="text-sm text-gray-600 hover:text-[#191919] transition-colors">
-              Community
-            </a>
+          {/* Navigation & Actions - Right Aligned */}
+          <div className="header-actions flex items-center gap-6">
+            {/* Nav Links */}
+            <nav className="nav hidden md:flex items-center">
+              {navItems.map((item) => (
+                item.hasDropdown && item.dropdownItems ? (
+                  <NavDropdown
+                    key={item.label}
+                    label={item.label}
+                    href={item.href}
+                    items={item.dropdownItems}
+                  />
+                ) : (
+                  <div key={item.label} className="nav-item">
+                    <a
+                      href={item.href}
+                      className="button button-compact flex items-center bg-transparent text-[#45474d] hover:text-black hover:bg-[#eff0f3] transition-all"
+                      style={{
+                        fontSize: '14px',
+                        fontWeight: 450,
+                        padding: '6px 16px',
+                        borderRadius: '999px'
+                      }}
+                    >
+                      {item.label}
+                    </a>
+                  </div>
+                )
+              ))}
+            </nav>
+
+            {/* Connect Button */}
             <a
-              href="#join"
-              className="inline-flex items-center justify-center rounded-full bg-[#191919] px-5 py-2 text-sm font-medium text-white hover:bg-[#333] transition-colors"
+              href="https://linktr.ee/claudenorthumbria?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnYmH3pL9TJPN49OI_rxdRTsor6i45CBbwg9XBz3R7KEBW-8ARUlIuvcPMCwc_aem_P-oNMcLt0iW81MmKW-DePw"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="button button-secondary button-compact flex items-center hidden sm:flex"
+              style={{
+                fontSize: '14px',
+                fontWeight: 450,
+                padding: '6px 16px',
+                borderRadius: '999px'
+              }}
+              aria-label="Connect with us on social media"
+            >
+              Connect With Us
+            </a>
+
+            {/* Join the Club Button */}
+            <a
+              href="/join"
+              className="button button-primary button-compact flex items-center"
+              style={{
+                fontSize: '14px',
+                fontWeight: 450,
+                backgroundColor: '#121317',
+                color: 'white',
+                borderRadius: '999px',
+                padding: '10px 24px',
+                border: 'none',
+                marginRight: '24px'
+              }}
             >
               Join the Club
             </a>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            <svg
-              className="w-6 h-6 text-[#191919]"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-            >
-              {mobileMenuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5" />
-              )}
-            </svg>
-          </button>
         </div>
-
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="md:hidden pb-6 pt-2 border-t border-gray-100">
-            <div className="flex flex-col gap-4">
-              <a href="#about" className="text-sm text-gray-600 hover:text-[#191919] transition-colors" onClick={() => setMobileMenuOpen(false)}>
-                About
-              </a>
-              <a href="#capabilities" className="text-sm text-gray-600 hover:text-[#191919] transition-colors" onClick={() => setMobileMenuOpen(false)}>
-                What We Build
-              </a>
-              <a href="#events" className="text-sm text-gray-600 hover:text-[#191919] transition-colors" onClick={() => setMobileMenuOpen(false)}>
-                Events
-              </a>
-              <a href="#community" className="text-sm text-gray-600 hover:text-[#191919] transition-colors" onClick={() => setMobileMenuOpen(false)}>
-                Community
-              </a>
-              <a
-                href="#join"
-                className="inline-flex items-center justify-center rounded-full bg-[#191919] px-5 py-2.5 text-sm font-medium text-white"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Join the Club
-              </a>
-            </div>
-          </div>
-        )}
       </div>
-    </nav>
+    </header>
   );
 }
