@@ -421,7 +421,7 @@ const AnimatedFolder: React.FC<AnimatedFolderProps> = ({ title, projects, classN
 const portfolioData = [
   {
     title: "Branding",
-    gradient: "linear-gradient(135deg, #e73827, #f85032)",
+    gradient: "linear-gradient(135deg, #ff6a00, #ee9b00)",
     projects: [
       { id: "b1", image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800", title: "Lumnia Identity" },
       { id: "b2", image: "https://images.unsplash.com/photo-1614850523296-d8c1af93d400?auto=format&fit=crop&q=80&w=800", title: "Prism Collective" },
@@ -433,7 +433,7 @@ const portfolioData = [
   },
   {
     title: "Web Design",
-    gradient: "linear-gradient(to right, #f7b733, #fc4a1a)",
+    gradient: "linear-gradient(135deg, #ff6a00, #ee9b00)",
     projects: [
       { id: "w1", image: "https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&q=80&w=800", title: "Nexus Platform" },
       { id: "w2", image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800", title: "Echo Analytics" },
@@ -444,7 +444,7 @@ const portfolioData = [
   },
   {
     title: "UI/UX Design",
-    gradient: "linear-gradient(135deg, #00c6ff, #0072ff)",
+    gradient: "linear-gradient(135deg, #ff6a00, #ee9b00)",
     projects: [
       { id: "u1", image: "https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?auto=format&fit=crop&q=80&w=800", title: "Crypto Wallet" },
       { id: "u2", image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&q=80&w=800", title: "Social Connect" },
@@ -455,7 +455,7 @@ const portfolioData = [
   },
   {
     title: "Photography",
-    gradient: "linear-gradient(to right, #414345, #232526)",
+    gradient: "linear-gradient(135deg, #ff6a00, #ee9b00)",
     projects: [
       { id: "p1", image: "https://images.unsplash.com/photo-1493863641943-9b68992a8d07?auto=format&fit=crop&q=80&w=800", title: "Urban Rhythms" },
       { id: "p2", image: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&q=80&w=800", title: "Natural States" },
@@ -464,7 +464,7 @@ const portfolioData = [
   },
   {
     title: "Illustration",
-    gradient: "linear-gradient(135deg, #8e2de2, #4a00e0)",
+    gradient: "linear-gradient(135deg, #ff6a00, #ee9b00)",
     projects: [
       { id: "i1", image: "https://images.unsplash.com/photo-1618335829737-2228915674e0?auto=format&fit=crop&q=80&w=800", title: "Digital Flora" },
       { id: "i2", image: "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&q=80&w=800", title: "Neon Nights" },
@@ -473,7 +473,7 @@ const portfolioData = [
   },
   {
     title: "Motion",
-    gradient: "linear-gradient(135deg, #f80759, #bc4e9c)",
+    gradient: "linear-gradient(135deg, #ff6a00, #ee9b00)",
     projects: [
       { id: "m1", image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=800", title: "3D Sequences" },
       { id: "m2", image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800", title: "Glitch Art" },
@@ -482,7 +482,33 @@ const portfolioData = [
   }
 ];
 
+const yearTabs = ["2025/2026", "2026/2027"] as const;
+type YearTab = typeof yearTabs[number];
+
 export default function HackathonPage() {
+  const [activeYear, setActiveYear] = useState<YearTab>("2025/2026");
+  const toggleContainerRef = useRef<HTMLDivElement>(null);
+  const buttonRefsMap = useRef<Map<YearTab, HTMLButtonElement | null>>(new Map());
+  const [indicatorStyle, setIndicatorStyle] = useState<{ left: number; width: number } | null>(null);
+  const isFirstRender = useRef(true);
+
+  useEffect(() => {
+    const btn = buttonRefsMap.current.get(activeYear);
+    const container = toggleContainerRef.current;
+    if (btn && container) {
+      const containerRect = container.getBoundingClientRect();
+      const btnRect = btn.getBoundingClientRect();
+      setIndicatorStyle({
+        left: btnRect.left - containerRect.left,
+        width: btnRect.width,
+      });
+    }
+    // After first measurement, allow transitions
+    if (isFirstRender.current) {
+      requestAnimationFrame(() => { isFirstRender.current = false; });
+    }
+  }, [activeYear]);
+
   return (
     <main className="min-h-screen bg-white">
       <Navbar />
@@ -492,28 +518,77 @@ export default function HackathonPage() {
           <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-4 animate-in fade-in slide-in-from-bottom-4 duration-700">
             Design <span className="text-primary italic">Portfolio</span>
           </h1>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150">
-            An interactive catalog of creative work. Hover over folders to reveal project previews.
-          </p>
+          <div ref={toggleContainerRef} className="relative inline-flex items-center mt-6 mb-4 p-1 rounded-full bg-gray-100 border border-gray-200 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150">
+            {indicatorStyle && (
+              <div
+                className={cn(
+                  "absolute top-1 bottom-1 rounded-full bg-[#121317] shadow-sm",
+                  !isFirstRender.current && "transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                )}
+                style={{
+                  transform: `translateX(${indicatorStyle.left}px)`,
+                  width: `${indicatorStyle.width}px`,
+                  left: 0,
+                }}
+              />
+            )}
+            {yearTabs.map((year) => (
+              <button
+                key={year}
+                ref={(el) => { buttonRefsMap.current.set(year, el); }}
+                onClick={() => setActiveYear(year)}
+                className={cn(
+                  "relative z-10 px-5 py-2 rounded-full text-sm transition-colors duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",
+                  activeYear === year
+                    ? "text-white"
+                    : "text-gray-500 hover:text-gray-700"
+                )}
+                style={{ fontSize: '14px', fontWeight: 450 }}
+              >
+                {year}
+              </button>
+            ))}
+          </div>
         </div>
 
         <section className="max-w-7xl mx-auto px-6 pt-16 pb-32">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 justify-items-center">
-            {portfolioData.map((folder, index) => (
-              <div
-                key={folder.title}
-                className="w-full animate-in fade-in slide-in-from-bottom-8 duration-700"
-                style={{ animationDelay: `${200 + index * 100}ms` }}
-              >
-                <AnimatedFolder
-                  title={folder.title}
-                  projects={folder.projects}
-                  gradient={folder.gradient}
-                  className="w-full"
-                />
-              </div>
-            ))}
-          </div>
+          {activeYear === "2025/2026" ? (
+            <div
+              key="2025/2026"
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 justify-items-center animate-in fade-in duration-500"
+            >
+              {portfolioData.map((folder, index) => (
+                <div
+                  key={folder.title}
+                  className="w-full animate-in fade-in slide-in-from-bottom-8 duration-700"
+                  style={{ animationDelay: `${200 + index * 100}ms` }}
+                >
+                  <AnimatedFolder
+                    title={folder.title}
+                    projects={folder.projects}
+                    gradient={folder.gradient}
+                    className="w-full"
+                  />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div
+              key="2026/2027"
+              className="flex flex-col items-center justify-center min-h-[400px] animate-in fade-in slide-in-from-bottom-4 duration-500"
+            >
+              <h3 className="text-5xl font-black uppercase tracking-tight text-foreground mb-3">Coming Soon</h3>
+              <p className="text-xl text-muted-foreground mb-12">Date will be announced soon. Stay tuned!</p>
+              <video
+                src="/videos/anthropic-claude-cartoon.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="max-w-2xl w-full rounded-2xl shadow-lg"
+              />
+            </div>
+          )}
         </section>
       </div>
 

@@ -160,7 +160,17 @@ export function Component() {
 
 
         const navigateToSlide = (targetIndex: number) => {
-            if (isTransitioning || targetIndex === currentSlideIndex) return; // BLOCKING LOGIC
+            if (targetIndex === currentSlideIndex) return;
+
+            // If mid-transition, kill current animation and snap to its target
+            if (isTransitioning) {
+                gsap.killTweensOf(shaderMaterial.uniforms.uProgress);
+                shaderMaterial.uniforms.uProgress.value = 0;
+                shaderMaterial.uniforms.uTexture1.value = slideTextures[currentSlideIndex];
+                shaderMaterial.uniforms.uTexture1Size.value = slideTextures[currentSlideIndex].userData.size;
+                isTransitioning = false;
+            }
+
             stopAutoSlideTimer();
 
             const currentTexture = slideTextures[currentSlideIndex];
@@ -188,6 +198,9 @@ export function Component() {
                         shaderMaterial.uniforms.uTexture1.value = targetTexture;
                         shaderMaterial.uniforms.uTexture1Size.value = targetTexture.userData.size;
                         isTransitioning = false;
+
+                        updateButtonStates(currentSlideIndex);
+
                         safeStartTimer(100);
                     }
                 }
@@ -208,7 +221,7 @@ export function Component() {
                 dot.className = `h-2 rounded-full transition-all ${i === 0 ? 'w-8 bg-white' : 'w-2 bg-white/50'}`;
                 dot.addEventListener("click", (e) => {
                     e.stopPropagation();
-                    if (!isTransitioning && i !== currentSlideIndex) {
+                    if (i !== currentSlideIndex) {
                          stopAutoSlideTimer();
                          navigateToSlide(i);
                     }
@@ -228,22 +241,18 @@ export function Component() {
             });
         };
 
-        const updateButtonStates = (idx: number) => {
+        const updateButtonStates = (_idx: number) => {
             const prevButton = document.getElementById("prevButton");
             const nextButton = document.getElementById("nextButton");
             if (prevButton) {
-                if (idx === 0) {
-                    prevButton.className = "absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center shadow-lg transition-transform z-10 opacity-40 cursor-not-allowed";
-                } else {
-                    prevButton.className = "absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center shadow-lg transition-transform z-10 bg-white hover:scale-110 hover:opacity-100 opacity-70";
-                }
+                prevButton.style.opacity = '';
+                prevButton.style.pointerEvents = '';
+                prevButton.className = "absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 z-10 bg-white hover:scale-110 hover:opacity-100 opacity-70";
             }
             if (nextButton) {
-                if (idx === slides.length - 1) {
-                    nextButton.className = "absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center shadow-lg transition-transform z-10 opacity-40 cursor-not-allowed";
-                } else {
-                    nextButton.className = "absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center shadow-lg transition-transform z-10 bg-white hover:scale-110 hover:opacity-100 opacity-70";
-                }
+                nextButton.style.opacity = '';
+                nextButton.style.pointerEvents = '';
+                nextButton.className = "absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 z-10 bg-white hover:scale-110 hover:opacity-100 opacity-70";
             }
         };
 
@@ -336,21 +345,17 @@ export function Component() {
         const nextButton = document.getElementById("nextButton");
 
         if (prevButton) {
-            prevButton.addEventListener("click", () => {
-                if (!isTransitioning && currentSlideIndex > 0) {
-                    stopAutoSlideTimer();
-                    navigateToSlide(currentSlideIndex - 1);
-                }
-            });
+            prevButton.onclick = () => {
+                stopAutoSlideTimer();
+                navigateToSlide((currentSlideIndex - 1 + slides.length) % slides.length);
+            };
         }
 
         if (nextButton) {
-            nextButton.addEventListener("click", () => {
-                if (!isTransitioning && currentSlideIndex < slides.length - 1) {
-                    stopAutoSlideTimer();
-                    navigateToSlide(currentSlideIndex + 1);
-                }
-            });
+            nextButton.onclick = () => {
+                stopAutoSlideTimer();
+                navigateToSlide((currentSlideIndex + 1) % slides.length);
+            };
         }
 
         // Initialize button states
@@ -386,7 +391,7 @@ export function Component() {
           {/* Navigation Buttons */}
           <button
             id="prevButton"
-            className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center shadow-lg transition-transform z-10 bg-white hover:scale-110 hover:opacity-100 opacity-70"
+            className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 z-10 bg-white hover:scale-110 hover:opacity-100 opacity-70"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -395,7 +400,7 @@ export function Component() {
 
           <button
             id="nextButton"
-            className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center shadow-lg transition-transform z-10 bg-white hover:scale-110 hover:opacity-100 opacity-70"
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 z-10 bg-white hover:scale-110 hover:opacity-100 opacity-70"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

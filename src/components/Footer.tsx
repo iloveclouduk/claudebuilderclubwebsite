@@ -81,7 +81,7 @@ export default function Footer() {
 
         {/* Large Claude Builder Club Northumbria Logo */}
         <div className="footer-img-container w-full py-16">
-          <div className="claude-builder-club-logo block px-6">
+          <div className="claude-builder-club-logo flex justify-center px-6" style={{ transform: 'translateX(-35px)' }}>
             <ClaudeBuilderClubLogo height={100} className="max-w-full" />
           </div>
         </div>

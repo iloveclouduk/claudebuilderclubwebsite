@@ -1,64 +1,82 @@
 export default function JoinCTA() {
   return (
-    <section id="join" className="py-32 bg-white">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-3xl bg-[#191919] px-8 py-20 sm:px-16 sm:py-28">
-          {/* Background pattern */}
-          <div className="absolute inset-0 opacity-5" style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
-            backgroundSize: '32px 32px'
-          }} />
+    <section className="relative py-24 sm:py-32 overflow-hidden bg-gradient-to-b from-[#FDF8F3] to-[#F5EDE4]">
+      {/* Video */}
+      <div className="relative z-10 flex justify-center px-6 mb-16">
+        <video
+          className="w-full max-w-4xl rounded-2xl"
+          autoPlay
+          loop
+          muted
+          playsInline
+          src="/videos/vid1.mp4"
+        />
+      </div>
 
-          {/* Gradient orbs */}
-          <div className="absolute top-0 right-0 w-96 h-96 bg-[#D4A574]/20 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#C4956A]/15 rounded-full blur-3xl" />
+      {/* Decorative illustrations - left side */}
+      <div className="absolute left-4 sm:left-12 top-1/2 -translate-y-1/2 hidden md:block opacity-60">
+        <svg width="140" height="200" viewBox="0 0 140 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          {/* Notebook */}
+          <rect x="10" y="30" width="80" height="110" rx="6" stroke="#C4956A" strokeWidth="2" fill="none" />
+          <line x1="30" y1="30" x2="30" y2="140" stroke="#C4956A" strokeWidth="1.5" />
+          {/* Notebook lines */}
+          <path d="M40 55 Q55 50 70 55" stroke="#D4A574" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+          <path d="M40 70 Q60 65 75 70" stroke="#D4A574" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+          <path d="M40 85 Q50 80 65 85" stroke="#D4A574" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+          <path d="M40 100 Q58 95 72 100" stroke="#D4A574" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+          {/* Spiral binding */}
+          {[40, 55, 70, 85, 100, 115, 130].map((y) => (
+            <circle key={y} cx="30" cy={y} r="3" stroke="#C4956A" strokeWidth="1.2" fill="none" />
+          ))}
+          {/* Leaf */}
+          <path d="M105 150 Q120 120 110 90" stroke="#8B9E7E" strokeWidth="2" fill="none" strokeLinecap="round" />
+          <path d="M105 150 Q130 130 120 100" stroke="#8B9E7E" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+          <path d="M110 130 Q115 125 118 118" stroke="#8B9E7E" strokeWidth="1" fill="none" strokeLinecap="round" />
+          {/* Small squiggle */}
+          <path d="M20 160 Q30 155 25 165 Q20 175 30 170" stroke="#D4A574" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+        </svg>
+      </div>
 
-          <div className="relative z-10 text-center max-w-2xl mx-auto">
-            <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-white leading-tight">
-              Ready to build the
-              <br />
-              <span className="bg-gradient-to-r from-[#D4A574] to-[#E8C9A8] bg-clip-text text-transparent">
-                future of AI?
-              </span>
-            </h2>
-            <p className="mt-6 text-lg text-gray-400 leading-relaxed">
-              Join Claude Builder Club Northumbria and be part of a community that&apos;s building
-              with the most capable and safest AI in the world. All skill levels welcome.
-            </p>
+      {/* Decorative illustrations - right side */}
+      <div className="absolute right-4 sm:right-12 top-1/2 -translate-y-1/2 hidden md:block opacity-60">
+        <svg width="140" height="200" viewBox="0 0 140 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          {/* Notebook */}
+          <rect x="50" y="40" width="80" height="110" rx="6" stroke="#C4956A" strokeWidth="2" fill="none" />
+          <line x1="110" y1="40" x2="110" y2="150" stroke="#C4956A" strokeWidth="1.5" />
+          {/* Notebook lines */}
+          <path d="M60 65 Q75 60 95 65" stroke="#D4A574" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+          <path d="M60 80 Q80 75 100 80" stroke="#D4A574" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+          <path d="M60 95 Q72 90 90 95" stroke="#D4A574" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+          {/* Spiral binding */}
+          {[50, 65, 80, 95, 110, 125, 140].map((y) => (
+            <circle key={y} cx="110" cy={y} r="3" stroke="#C4956A" strokeWidth="1.2" fill="none" />
+          ))}
+          {/* Cloud / heart shape */}
+          <path d="M20 60 Q25 45 35 50 Q45 40 50 55 Q55 45 60 55 Q65 50 62 65 Q55 75 40 70 Q25 75 20 60Z" stroke="#D4A574" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+          {/* Small leaf */}
+          <path d="M30 120 Q15 100 25 80" stroke="#8B9E7E" strokeWidth="2" fill="none" strokeLinecap="round" />
+          <path d="M30 120 Q10 105 18 88" stroke="#8B9E7E" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+          {/* Squiggle */}
+          <path d="M110 165 Q120 160 115 170 Q110 180 120 175" stroke="#D4A574" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+        </svg>
+      </div>
 
-            {/* Sign up form */}
-            <div className="mt-10 flex flex-col sm:flex-row items-center gap-3 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Enter your university email"
-                className="w-full rounded-full bg-white/10 border border-white/10 px-6 py-3.5 text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#D4A574]/50 focus:border-transparent text-sm"
-              />
-              <button className="w-full sm:w-auto whitespace-nowrap rounded-full bg-gradient-to-r from-[#D4A574] to-[#C4956A] px-8 py-3.5 text-sm font-semibold text-white hover:opacity-90 transition-opacity shadow-lg shadow-[#D4A574]/20">
-                Join Now
-              </button>
-            </div>
-
-            <p className="mt-4 text-xs text-gray-500">
-              Open to all Northumbria University students. No experience required.
-            </p>
-
-            {/* Quick links */}
-            <div className="mt-12 flex items-center justify-center gap-8 text-sm">
-              <div className="flex items-center gap-2 text-gray-400">
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-                </svg>
-                <span>Northumbria University, Newcastle</span>
-              </div>
-              <div className="flex items-center gap-2 text-gray-400">
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span>Weekly meetups</span>
-              </div>
-            </div>
-          </div>
+      {/* Content */}
+      <div className="relative z-10 text-center max-w-2xl mx-auto px-6">
+        <h2 className="font-anthropic heading-2 text-[#191919] leading-tight">
+          Ready to build?
+        </h2>
+        <p className="mt-4 text-lg text-[#555] leading-relaxed">
+          Join our community and start building the future of AI today.
+        </p>
+        <div className="mt-8">
+          <a
+            href="#join"
+            className="inline-flex items-center gap-2 rounded-full bg-[#191919] px-8 py-3.5 text-sm font-semibold text-white hover:bg-[#333] transition-colors"
+          >
+            Join the Club
+            <span aria-hidden="true">&rarr;</span>
+          </a>
         </div>
       </div>
     </section>
