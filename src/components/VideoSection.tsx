@@ -54,7 +54,7 @@ export default function VideoSection() {
                     transform: `translateY(${120 * (1 - scrollProgress)}px) translateZ(${-200 * (1 - scrollProgress)}px) scale(${0.6 + 0.4 * scrollProgress}) rotateX(${15 * (1 - scrollProgress)}deg)`,
                 }}
             >
-                <div className="relative rounded-[24px] overflow-hidden bg-[#0a0a0a] aspect-video shadow-2xl border-2 border-white/25 ring-1 ring-white/10">
+                <div className="relative rounded-[24px] overflow-hidden bg-[#0a0a0a] aspect-video border-2 border-white/25 ring-1 ring-white/10" style={{ boxShadow: '0 25px 50px -12px rgba(255, 255, 255, 0.8)' }}>
                     <video
                         src={video.src}
                         autoPlay

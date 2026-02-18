@@ -29,14 +29,7 @@ const features = [
 
 export default function Features() {
     return (
-        <section className="relative bg-[#f8f9fa] py-32 overflow-hidden" id="product">
-            {/* Blue/Yellow gradient background glow */}
-            <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-0 left-0 w-2/3 h-full bg-gradient-to-r from-blue-500/5 to-transparent" />
-                <div className="absolute top-0 right-0 w-2/3 h-full bg-gradient-to-l from-yellow-500/5 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-pink-500/5 to-transparent" />
-            </div>
-
+        <section className="relative bg-white py-32 overflow-hidden" id="product">
             <div className="relative max-w-[1400px] mx-auto px-6">
                 {features.map((feature, index) => (
                     <motion.div
@@ -141,8 +134,7 @@ export default function Features() {
                                     </div>
                                 </div>
 
-                                {/* Glow effect behind mockup */}
-                                <div className="absolute -inset-4 -z-10 bg-gradient-to-r from-blue-200/30 via-transparent to-yellow-200/30 blur-2xl rounded-3xl" />
+
                             </div>
                         </div>
                     </motion.div>

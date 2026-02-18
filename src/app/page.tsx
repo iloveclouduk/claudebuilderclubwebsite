@@ -33,8 +33,8 @@ export default function Home() {
       <Hero />
       <VideoSection />
       <ThinkingPartner />
-      <CuriosityCollaborator />
       <HackathonSection />
+      <CuriosityCollaborator />
 
       <Features />
       <LuminaInteractiveList />
