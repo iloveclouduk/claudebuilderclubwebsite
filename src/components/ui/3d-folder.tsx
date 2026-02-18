@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useRef, useEffect, useLayoutEffect, useCallback } from "react"
+import { useRouter } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { X, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react"
 
@@ -14,9 +15,11 @@ interface AnimatedFolderProps {
   title: string
   projects: Project[]
   className?: string
+  href?: string
 }
 
-export function AnimatedFolder({ title, projects, className }: AnimatedFolderProps) {
+export function AnimatedFolder({ title, projects, className, href }: AnimatedFolderProps) {
+  const router = useRouter()
   const [isHovered, setIsHovered] = useState(false)
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
   const [sourceRect, setSourceRect] = useState<DOMRect | null>(null)
@@ -65,6 +68,7 @@ export function AnimatedFolder({ title, projects, className }: AnimatedFolderPro
           minHeight: "320px",
           perspective: "1000px",
         }}
+        onClick={() => href && router.push(href)}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
@@ -170,16 +174,6 @@ export function AnimatedFolder({ title, projects, className }: AnimatedFolderPro
           {projects.length} projects
         </p>
 
-        {/* Hover hint */}
-        <div
-          className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-1.5 text-xs text-muted-foreground transition-all duration-300"
-          style={{
-            opacity: isHovered ? 0 : 0.6,
-            transform: isHovered ? "translateY(10px)" : "translateY(0)",
-          }}
-        >
-          <span>Hover to explore</span>
-        </div>
       </div>
 
       <ImageLightbox
