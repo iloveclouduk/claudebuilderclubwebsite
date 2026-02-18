@@ -10,18 +10,6 @@ export default function KeepThinking() {
         <section className="bg-white py-24 px-6 overflow-hidden">
             <div className="max-w-[1400px] mx-auto">
                 <div className="flex flex-col items-center text-center mb-16">
-                    <div className="max-w-[1000px] w-full grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mb-12">
-                        <div>
-                            <h2 className="font-serif text-2xl md:text-3xl leading-[1.2] tracking-tight text-[#1a1a1a]">
-                                Your curiosity&apos;s collaborator
-                            </h2>
-                        </div>
-                        <div className="flex items-center">
-                            <p className="text-sm md:text-base text-gray-600 leading-relaxed text-left">
-                                There&apos;s never been a worse time to be a problem, or a better time to be a problem solver.
-                            </p>
-                        </div>
-                    </div>
                     <h2 className="text-[40px] md:text-[64px] font-[450] tracking-[-0.02em] leading-[1.1] text-[#1a1a1a] mb-6">
                         <ScrollTriggeredTypedText
                             text="Keep thinking with Claude"

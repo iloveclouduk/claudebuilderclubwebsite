@@ -19,16 +19,16 @@ export function CuriosityCollaborator() {
       {/* Centered Typewriter Section */}
       <div className="max-w-[1000px] mx-auto mt-12 flex justify-center">
         <div className="text-center">
-          <div className="text-lg md:text-xl font-medium text-gray-800">
+          <div className="text-2xl md:text-4xl font-medium text-gray-800">
             <span>Keep </span>
             <Typewriter
               text={TYPEWRITER_TEXTS}
               speed={80}
-              className="text-blue-600 font-semibold"
+              className="text-orange-500 font-semibold"
               waitTime={1500}
               deleteSpeed={40}
               cursorChar={"_"}
-              cursorClassName="ml-1 text-blue-600"
+              cursorClassName="ml-1 text-orange-500"
             />
           </div>
         </div>

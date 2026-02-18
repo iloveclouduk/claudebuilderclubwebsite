@@ -383,6 +383,18 @@ export function Component() {
   return (
     <div className="lg:p-10 sm:p-4 p-2 max-w-4xl mx-auto">
       <div className="flex flex-col gap-3">
+        <div className="max-w-[1000px] w-full grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mb-12 mx-auto">
+          <div>
+            <h2 className="font-serif text-2xl md:text-3xl leading-[1.2] tracking-tight text-[#1a1a1a]">
+              Your curiosity&apos;s collaborator
+            </h2>
+          </div>
+          <div className="flex items-center">
+            <p className="text-sm md:text-base text-gray-600 leading-relaxed text-left">
+              There&apos;s never been a worse time to be a problem, or a better time to be a problem solver.
+            </p>
+          </div>
+        </div>
         <div className="relative overflow-hidden rounded-lg" ref={containerRef}>
           <main className="slider-wrapper">
             <canvas className="webgl-canvas"></canvas>
