@@ -49,7 +49,7 @@ export default function Hero() {
 
 
         {/* Main Heading with Typed Effect */}
-        <div className="header-container mx-auto mb-12 relative max-w-[1100px]">
+        <div className="header-container mx-auto mb-8 sm:mb-12 relative max-w-[1100px]">
 
 
 
@@ -64,7 +64,7 @@ export default function Hero() {
         </div>
 
         {/* Video Section - placed after heading */}
-        <div className="video-container mx-auto mb-16 px-6" style={{ maxWidth: '42rem', width: '100%', marginLeft: 'auto', marginRight: 'auto' }}>
+        <div className="video-container mx-auto mb-8 sm:mb-16 px-4 sm:px-6 max-w-2xl w-full">
           <div
             className="relative rounded-[24px] overflow-hidden"
             style={{
@@ -96,37 +96,28 @@ export default function Hero() {
         </div>
 
         {/* CTA Buttons - fade in after logo */}
-        <div className="welcome-cta flex gap-3 items-center justify-center mt-4">
+        <div className="welcome-cta flex flex-col sm:flex-row gap-3 items-center justify-center mt-4 w-full sm:w-auto px-4 sm:px-0">
           <a
-            href="/download"
-            className="button button-primary button-compact flex items-center gap-2"
-            style={{
-              padding: '12px 24px',
-              fontSize: '16px',
-              fontWeight: 450
-            }}
+            href="https://claude.ai/new"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="button button-primary button-compact flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3 text-base font-[450]"
           >
-            <svg width="16" height="20" viewBox="0 0 16 20" fill="currentColor">
-              <path d="M12.6 10.6c0-2.1 1.7-3.1 1.8-3.2-1-1.4-2.5-1.6-3-1.7-1.3-.1-2.5.8-3.1.8-.6 0-1.6-.7-2.7-.7-1.4 0-2.6.8-3.3 2-.7 1.2-.6 3.4.5 5.4.8 1.3 1.6 2.7 2.8 2.7 1.1 0 1.5-.7 2.8-.7 1.3 0 1.6.7 2.8.7 1.2 0 2-1.3 2.8-2.6.5-.8.9-1.5 1.1-2-.1-.1-2.2-.9-2.5-3.3v-.4zm-2.3-6c.6-.8 1-1.8.9-2.8-.9 0-1.9.6-2.6 1.4-.6.7-1 1.7-.9 2.7.9.1 1.9-.5 2.6-1.3z" />
-            </svg>
-            Download for MacOS
+            Cloudy AI
           </a>
 
           <a
-            href="/use-cases"
-            className="button button-secondary button-compact"
-            style={{
-              padding: '12px 24px',
-              fontSize: '16px',
-              fontWeight: 450
-            }}
+            href="https://claude.ai/new"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="button button-secondary button-compact w-full sm:w-auto px-6 py-3 text-base font-[450] text-center"
           >
-            Explore use cases
+            Cloudy AI
           </a>
         </div>
 
         {/* Logo Cloud Section */}
-        <div className="mt-20 mb-16 w-full max-w-3xl">
+        <div className="mt-12 sm:mt-20 mb-8 sm:mb-16 w-full max-w-3xl">
           <LogoCloud logos={logos} className="" />
         </div>
 

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect, useLayoutEffect, useCallback, forwardRef } from 'react';
+import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { X, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
@@ -485,110 +486,94 @@ const portfolioData = [
 const yearTabs = ["2025/2026", "2026/2027"] as const;
 type YearTab = typeof yearTabs[number];
 
+const springTransition = { type: "spring" as const, stiffness: 220, damping: 22 };
+
 export default function HackathonPage() {
   const [activeYear, setActiveYear] = useState<YearTab>("2025/2026");
-  const toggleContainerRef = useRef<HTMLDivElement>(null);
-  const buttonRefsMap = useRef<Map<YearTab, HTMLButtonElement | null>>(new Map());
-  const [indicatorStyle, setIndicatorStyle] = useState<{ left: number; width: number } | null>(null);
-  const isFirstRender = useRef(true);
-
-  useEffect(() => {
-    const btn = buttonRefsMap.current.get(activeYear);
-    const container = toggleContainerRef.current;
-    if (btn && container) {
-      const containerRect = container.getBoundingClientRect();
-      const btnRect = btn.getBoundingClientRect();
-      setIndicatorStyle({
-        left: btnRect.left - containerRect.left,
-        width: btnRect.width,
-      });
-    }
-    // After first measurement, allow transitions
-    if (isFirstRender.current) {
-      requestAnimationFrame(() => { isFirstRender.current = false; });
-    }
-  }, [activeYear]);
 
   return (
     <main className="min-h-screen bg-white">
       <Navbar />
 
-      <div className="min-h-screen bg-background text-foreground" style={{ paddingTop: '80px' }}>
+      <div className="min-h-screen bg-white text-black" style={{ paddingTop: '80px' }}>
         <div className="max-w-7xl mx-auto pt-20 px-6 text-center">
           <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-4 animate-in fade-in slide-in-from-bottom-4 duration-700">
             Design <span className="text-primary italic">Portfolio</span>
           </h1>
-          <div ref={toggleContainerRef} className="relative inline-flex items-center mt-6 mb-4 p-1 rounded-full bg-gray-100 border border-gray-200 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150">
-            {indicatorStyle && (
-              <div
-                className={cn(
-                  "absolute top-1 bottom-1 rounded-full bg-[#121317] shadow-sm",
-                  !isFirstRender.current && "transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
-                )}
-                style={{
-                  transform: `translateX(${indicatorStyle.left}px)`,
-                  width: `${indicatorStyle.width}px`,
-                  left: 0,
-                }}
-              />
-            )}
-            {yearTabs.map((year) => (
-              <button
-                key={year}
-                ref={(el) => { buttonRefsMap.current.set(year, el); }}
-                onClick={() => setActiveYear(year)}
-                className={cn(
-                  "relative z-10 px-5 py-2 rounded-full text-sm transition-colors duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",
-                  activeYear === year
-                    ? "text-white"
-                    : "text-gray-500 hover:text-gray-700"
-                )}
-                style={{ fontSize: '14px', fontWeight: 450 }}
-              >
-                {year}
-              </button>
-            ))}
+          <div className="inline-flex items-center gap-1 mt-6 mb-4 p-1.5 rounded-full bg-gray-100/80 backdrop-blur-2xl border border-black/5 shadow-lg shadow-black/5 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150">
+            {yearTabs.map((year) => {
+              const isActive = year === activeYear;
+              return (
+                <motion.button
+                  key={year}
+                  onClick={() => setActiveYear(year)}
+                  whileTap={{ scale: 0.96 }}
+                  className="relative z-10 px-5 py-2 rounded-full text-sm font-medium cursor-pointer"
+                >
+                  {isActive && (
+                    <motion.div
+                      layoutId="year-pill-surface"
+                      className="absolute inset-0 rounded-full bg-white border border-black/10 shadow-sm"
+                      transition={springTransition}
+                    />
+                  )}
+                  <span className={cn("relative z-10 transition-colors duration-200", isActive ? "text-black" : "text-gray-400")}>
+                    {year}
+                  </span>
+                </motion.button>
+              );
+            })}
           </div>
         </div>
 
         <section className="max-w-7xl mx-auto px-6 pt-16 pb-32">
-          {activeYear === "2025/2026" ? (
-            <div
-              key="2025/2026"
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 justify-items-center animate-in fade-in duration-500"
-            >
-              {portfolioData.map((folder, index) => (
-                <div
-                  key={folder.title}
-                  className="w-full animate-in fade-in slide-in-from-bottom-8 duration-700"
-                  style={{ animationDelay: `${200 + index * 100}ms` }}
-                >
-                  <AnimatedFolder
-                    title={folder.title}
-                    projects={folder.projects}
-                    gradient={folder.gradient}
-                    className="w-full"
-                  />
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div
-              key="2026/2027"
-              className="flex flex-col items-center justify-center min-h-[400px] animate-in fade-in slide-in-from-bottom-4 duration-500"
-            >
-              <h3 className="text-5xl font-black uppercase tracking-tight text-foreground mb-3">Coming Soon</h3>
-              <p className="text-xl text-muted-foreground mb-12">Date will be announced soon. Stay tuned!</p>
-              <video
-                src="/videos/anthropic-claude-cartoon.mp4"
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="max-w-2xl w-full rounded-2xl shadow-lg"
-              />
-            </div>
-          )}
+          <AnimatePresence mode="wait">
+            {activeYear === "2025/2026" ? (
+              <motion.div
+                key="2025/2026"
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -16 }}
+                transition={{ duration: 0.35 }}
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 justify-items-center"
+              >
+                {portfolioData.map((folder, index) => (
+                  <div
+                    key={folder.title}
+                    className="w-full animate-in fade-in slide-in-from-bottom-8 duration-700"
+                    style={{ animationDelay: `${200 + index * 100}ms` }}
+                  >
+                    <AnimatedFolder
+                      title={folder.title}
+                      projects={folder.projects}
+                      gradient={folder.gradient}
+                      className="w-full"
+                    />
+                  </div>
+                ))}
+              </motion.div>
+            ) : (
+              <motion.div
+                key="2026/2027"
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -16 }}
+                transition={{ duration: 0.35 }}
+                className="flex flex-col items-center justify-center min-h-[400px]"
+              >
+                <h3 className="text-5xl font-black uppercase tracking-tight text-foreground mb-3">Coming Soon</h3>
+                <p className="text-xl text-muted-foreground mb-12">Date will be announced soon. Stay tuned!</p>
+                <video
+                  src="/videos/anthropic-claude-cartoon.mp4"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="max-w-2xl w-full rounded-2xl shadow-lg"
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </section>
       </div>
 

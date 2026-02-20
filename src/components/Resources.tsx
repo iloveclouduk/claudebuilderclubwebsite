@@ -30,11 +30,11 @@ const blogPosts = [
 
 export default function Resources() {
     return (
-        <section className="bg-[#f8f9fa] py-24" id="blog">
-            <div className="max-w-[1400px] mx-auto px-6">
+        <section className="bg-[#f8f9fa] py-16 sm:py-20 md:py-24" id="blog">
+            <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
                 {/* Header */}
-                <div className="flex items-center justify-between mb-12">
-                    <h2 className="text-[40px] md:text-[56px] font-[450] tracking-[-0.02em] text-ag-text">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8 sm:mb-12">
+                    <h2 className="text-[28px] sm:text-[36px] md:text-[56px] font-[450] tracking-[-0.02em] text-ag-text">
                         <ScrollTriggeredTypedText
                             text="Latest Blogs"
                             startDelay={200}
@@ -42,7 +42,7 @@ export default function Resources() {
                     </h2>
                     <Link
                         href="#"
-                        className="hidden md:inline-flex items-center gap-2 px-6 py-3 text-[14px] font-medium text-ag-text border border-gray-200 rounded-full hover:bg-white transition-colors"
+                        className="inline-flex items-center gap-2 px-6 py-3 text-[14px] font-medium text-ag-text border border-gray-200 rounded-full hover:bg-white transition-colors self-start sm:self-auto"
                     >
                         View blog
                     </Link>
@@ -78,7 +78,7 @@ export default function Resources() {
                             </div>
 
                             {/* Card Content */}
-                            <h3 className="text-[22px] font-[450] leading-tight text-black mb-3 group-hover:text-ag-text-secondary transition-colors">
+                            <h3 className="text-lg sm:text-[22px] font-[450] leading-tight text-black mb-3 group-hover:text-ag-text-secondary transition-colors">
                                 {post.title.replace('Claude Builder Club Northumbria', 'Claude Builder Club ')}
                                 <span className="font-bold">Northumbria</span>
                             </h3>
@@ -99,10 +99,10 @@ export default function Resources() {
 
                 {/* Navigation arrows */}
                 <div className="flex items-center gap-2 mt-12">
-                    <button className="p-3 rounded-full border border-gray-200 hover:bg-white transition-colors">
+                    <button className="p-3 rounded-full border border-gray-200 hover:bg-white transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center">
                         <ChevronLeft className="w-5 h-5 text-ag-text" />
                     </button>
-                    <button className="p-3 rounded-full border border-gray-200 hover:bg-white transition-colors">
+                    <button className="p-3 rounded-full border border-gray-200 hover:bg-white transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center">
                         <ChevronRight className="w-5 h-5 text-ag-text" />
                     </button>
                 </div>

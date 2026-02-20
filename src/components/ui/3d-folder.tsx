@@ -64,7 +64,7 @@ export function AnimatedFolder({ title, projects, className, href }: AnimatedFol
           className,
         )}
         style={{
-          minWidth: "280px",
+          minWidth: "min(280px, 100%)",
           minHeight: "320px",
           perspective: "1000px",
         }}

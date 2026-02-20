@@ -7,10 +7,10 @@ export default function KeepThinking() {
     const videoRef = useRef<HTMLVideoElement>(null);
 
     return (
-        <section className="bg-white py-24 px-6 overflow-hidden">
+        <section className="bg-white py-12 sm:py-16 md:py-24 px-4 sm:px-6 overflow-hidden">
             <div className="max-w-[1400px] mx-auto">
-                <div className="flex flex-col items-center text-center mb-16">
-                    <h2 className="text-[40px] md:text-[64px] font-[450] tracking-[-0.02em] leading-[1.1] text-[#1a1a1a] mb-6">
+                <div className="flex flex-col items-center text-center mb-8 sm:mb-12 md:mb-16">
+                    <h2 className="text-[28px] sm:text-[36px] md:text-[64px] font-[450] tracking-[-0.02em] leading-[1.1] text-[#1a1a1a] mb-6">
                         <ScrollTriggeredTypedText
                             text="Keep thinking with Claude"
                             startDelay={100}

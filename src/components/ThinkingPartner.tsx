@@ -6,11 +6,11 @@ import { motion } from "framer-motion";
 
 export function ThinkingPartner() {
     return (
-        <section className="bg-white text-black py-24 px-6 md:px-12 relative overflow-hidden">
+        <section className="bg-white text-black py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-12 relative overflow-hidden">
             <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 {/* Left Content */}
                 <div className="z-10">
-                    <h2 className="font-serif text-5xl md:text-7xl mb-6 tracking-tight leading-[1.1]">
+                    <h2 className="font-serif text-3xl sm:text-5xl md:text-7xl mb-6 tracking-tight leading-[1.1]">
                         Meet your <br />
                         thinking partner
                     </h2>
@@ -26,7 +26,7 @@ export function ThinkingPartner() {
                             className="w-full bg-transparent text-black placeholder-gray-500 outline-none px-2 py-3 text-lg"
                             readOnly
                         />
-                        <button className="absolute right-3 top-3 bottom-3 bg-[#D97757] hover:bg-[#C56A4C] text-white px-4 rounded-lg flex items-center gap-2 font-medium transition-colors">
+                        <button className="absolute right-3 top-3 bottom-3 bg-[#D97757] hover:bg-[#C56A4C] text-white px-4 rounded-lg flex items-center gap-2 font-medium transition-colors min-h-[44px]">
                             Ask Claude <ArrowUp size={18} />
                         </button>
                     </div>

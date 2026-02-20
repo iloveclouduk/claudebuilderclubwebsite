@@ -1,6 +1,6 @@
 export default function JoinCTA() {
   return (
-    <section className="relative py-24 sm:py-32 overflow-hidden bg-gradient-to-b from-[#FDF8F3] to-[#F5EDE4]">
+    <section className="relative py-16 sm:py-24 md:py-32 overflow-hidden bg-gradient-to-b from-[#FDF8F3] to-[#F5EDE4]">
       {/* Content */}
       <div className="relative z-10 text-center max-w-2xl mx-auto px-6">
         <h2 className="font-anthropic heading-2 text-[#191919] leading-tight">

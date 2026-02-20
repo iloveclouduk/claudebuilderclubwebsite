@@ -13,7 +13,7 @@ import Features from "@/components/Features";
 import { Component as LuminaInteractiveList } from "@/components/ui/lumina-interactive-list";
 import KeepThinking from "@/components/KeepThinking";
 import Resources from "@/components/Resources";
-import JoinCTA from "@/components/JoinCTA";
+import { LetsWorkTogether } from "@/components/LetsWorkTogether";
 import Footer from "@/components/Footer";
 
 
@@ -40,7 +40,7 @@ export default function Home() {
       <Features />
       <KeepThinking />
       <Resources />
-      <JoinCTA />
+      <LetsWorkTogether />
       <Footer />
     </main>
   );

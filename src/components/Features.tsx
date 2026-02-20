@@ -29,8 +29,8 @@ const features = [
 
 export default function Features() {
     return (
-        <section className="relative bg-white py-32 overflow-hidden" id="product">
-            <div className="relative max-w-[1400px] mx-auto px-6">
+        <section className="relative bg-white py-16 sm:py-24 lg:py-32 overflow-hidden" id="product">
+            <div className="relative max-w-[1400px] mx-auto px-4 sm:px-6">
                 {features.map((feature, index) => (
                     <motion.div
                         key={feature.id}
@@ -39,18 +39,18 @@ export default function Features() {
                         viewport={{ once: true, margin: "-100px" }}
                         transition={{ duration: 0.6, delay: index * 0.1 }}
                         className={`flex flex-col ${index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
-                            } items-center gap-16 mb-32 last:mb-0`}
+                            } items-center gap-8 sm:gap-12 lg:gap-16 mb-16 sm:mb-24 lg:mb-32 last:mb-0`}
                     >
                         {/* Text Content */}
                         <div className="flex-1 max-w-xl">
-                            <h2 className="text-[40px] md:text-[56px] font-[450] leading-[1.1] tracking-[-0.02em] text-ag-text mb-6">
+                            <h2 className="text-[28px] sm:text-[36px] md:text-[56px] font-[450] leading-[1.1] tracking-[-0.02em] text-ag-text mb-6">
                                 <ScrollTriggeredTypedText
                                     text={feature.title}
                                     startDelay={500 + (index * 200)} // Staggered start delay
                                     className="inline-block"
                                 />
                             </h2>
-                            <p className="text-[18px] leading-relaxed text-black">
+                            <p className="text-base sm:text-[18px] leading-relaxed text-black">
                                 {feature.description.replace('Claude Builder Club Northumbria', 'Claude Builder Club ')}<span className="font-bold">Northumbria</span>'s Editor view offers tab autocompletion, natural language code commands, and a configurable, and context-aware configurable agent.
                             </p>
                         </div>
