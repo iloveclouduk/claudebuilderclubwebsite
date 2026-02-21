@@ -383,6 +383,11 @@ body {
   background: rgba(0, 0, 0, 0.5);
 }
 
+/* ===== GHOSTTY TERMINAL ACCENT ===== */
+.b {
+  color: #c07850;
+}
+
 /* ===== LUMINA INTERACTIVE LIST STYLES ===== */
 :root {
   --font-mono: "PPSupplyMono", monospace;

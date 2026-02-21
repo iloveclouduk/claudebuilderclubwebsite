@@ -40,6 +40,11 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500&display=swap"
           rel="stylesheet"
         />
+        {/* JetBrains Mono - Monospace font for terminal */}
+        <link
+          href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"
+          rel="stylesheet"
+        />
         {/* Google Symbols for icons */}
         <link
           href="https://fonts.googleapis.com/css2?family=Google+Symbols:opsz,wght,FILL,GRAD,ROND@40..48,300,0..1,0,50&display=block"

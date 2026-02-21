@@ -14,7 +14,9 @@ import { Component as LuminaInteractiveList } from "@/components/ui/lumina-inter
 import KeepThinking from "@/components/KeepThinking";
 import Resources from "@/components/Resources";
 import { LetsWorkTogether } from "@/components/LetsWorkTogether";
+import GhosttyTerminal from "@/components/GhosttyTerminal";
 import Footer from "@/components/Footer";
+import LottieSection from "@/components/LottieSection";
 
 
 
@@ -34,6 +36,7 @@ export default function Home() {
       <VideoSection />
       <ThinkingPartner />
       <LuminaInteractiveList />
+      <LottieSection />
       <HackathonSection />
       <CuriosityCollaborator />
 
@@ -41,6 +44,7 @@ export default function Home() {
       <KeepThinking />
       <Resources />
       <LetsWorkTogether />
+      <GhosttyTerminal />
       <Footer />
     </main>
   );

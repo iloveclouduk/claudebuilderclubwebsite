@@ -1,6 +1,8 @@
 'use client';
 
 import dynamic from 'next/dynamic';
+import Lottie from 'lottie-react';
+import animationData from '../../public/animations/anthropic-overview.json';
 import ClaudeBuilderClubLogo from './ClaudeBuilderClubLogo';
 import ScrollTriggeredTypedText from './ScrollTriggeredTypedText';
 import { LogoCloud } from "@/components/ui/logo-cloud-3";
@@ -63,34 +65,14 @@ export default function Hero() {
           </h1>
         </div>
 
-        {/* Video Section - placed after heading */}
+        {/* Lottie Animation Section - placed after heading */}
         <div className="video-container mx-auto mb-8 sm:mb-16 px-4 sm:px-6 max-w-2xl w-full">
-          <div
-            className="relative rounded-[24px] overflow-hidden"
-            style={{
-              width: '100%',
-              position: 'relative',
-              border: 'none',
-              outline: 'none',
-              boxShadow: 'none',
-            }}
-          >
-            <video
-              src="/videos/vid3.mp4"
-              autoPlay
+          <div className="relative rounded-[24px] overflow-hidden">
+            <Lottie
+              animationData={animationData}
               loop
-              muted
-              playsInline
-              style={{
-                width: '100%',
-                height: 'auto',
-                display: 'block',
-                border: 'none',
-                outline: 'none',
-                boxShadow: 'none',
-                userSelect: 'none',
-                background: 'transparent'
-              }}
+              autoplay
+              style={{ width: '100%', height: 'auto' }}
             />
           </div>
         </div>

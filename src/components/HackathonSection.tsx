@@ -122,7 +122,7 @@ export function HackathonSection() {
                 >
                     <div className="aspect-video rounded-xl overflow-hidden shadow-2xl">
                         <video
-                            src="/videos/anthropic-claude-cartoon.mp4"
+                            src="/videos/hackathon-video.mp4"
                             autoPlay
                             loop
                             muted
